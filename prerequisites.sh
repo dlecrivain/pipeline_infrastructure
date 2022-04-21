@@ -35,20 +35,33 @@ if [ $script_verbose == "yes" ]; then
 fi
 }
 
+step_pause()
+{
+if [ $script_step_pause == "yes" ]; then
+        echo "press a key to continue"
+        read a
+fi
+}
 install_vagrant_rhel()
 {
   verbose "we are in install_vagrant_rhel function"
+  step_pause
   #sudo yum install -y yum-utils
   #sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
   #sudo yum install -y vagrant
+  verbose "we finished install_vagrant_rhel function"
+  step_pause
 }
 
 install_vagrant_debian()
 {
   verbose "we are in install_vagrant_debian function"
+  step_pause
   #curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
   #sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
   #sudo apt-get update && sudo apt-get install vagrant
+  verbose "we finished install_vagrant_debian function"
+  step_pause
 }
 
 if [[ -f /etc/os-release ]]
@@ -62,11 +75,17 @@ fi
 case $ID in
      "rhel")
         verbose "we are in case rhel"
+        step_pause
         install_vagrant_rhel
+        verbose "we finished case rhel"
+        step_pause
         ;;
      "debian"|"ubuntu")
         verbose "we are in case debian"
+        step_pause
         install_vagrant_debian
+        verbose "we finished case debian"
+        step_pause
         ;;
      *) echo "$ID is not yet supported";;
 esac 
