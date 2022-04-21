@@ -18,6 +18,10 @@ case "$1" in
         script_step_pause="yes"
         shift
         ;;
+      --wsl)
+        prerequisites_wsl="yes"
+        shift
+        ;;
       *)
         echo "unknown parameter '$1'." 1>&2
         break
@@ -26,7 +30,7 @@ case "$1" in
 esac
 done
 
-echo "la valeur de script_verbose est à ${script_verbose}, et script_step_pause à ${script_step_pause}"
+echo "la valeur de script_verbose est à ${script_verbose}, script_step_pause à ${script_step_pause}, prerequisites_wsl à ${prerequisites_wsl}"
 
 verbose()
 {
@@ -65,6 +69,12 @@ install_vagrant_debian()
   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
   sudo apt-get update && sudo apt-get install vagrant
+    if [ $prerequisites_wsl == "yes" ]; then
+          echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
+          echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
+          source ~/.bahrc
+          vagrant plugin install virtualbox_WSL2
+    fi
   verbose "we finished install_vagrant_debian function"
   step_pause
 }
