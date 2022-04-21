@@ -64,11 +64,11 @@ fi
 
 case $ID in
      "rhel")
-        echo "we are in case rhel"
+        verbose "we are in case rhel"
         install_vagrant_rhel
         ;;
      "debian"|"ubuntu")
-        echo "we are in case debian"
+        verbose "we are in case debian"
         install_vagrant_debian
         ;;
      *) echo "$ID is not yet supported";;
