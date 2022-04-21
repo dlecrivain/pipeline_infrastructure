@@ -26,7 +26,7 @@ case "$1" in
 esac
 done
 
-#echo "la valeur de script_verbose est à ${script_verbose}, et script_step_pause à ${script_step_pause}"
+echo "la valeur de script_verbose est à ${script_verbose}, et script_step_pause à ${script_step_pause}"
 
 verbose()
 {
@@ -62,9 +62,9 @@ install_vagrant_debian()
 {
   verbose "we are in install_vagrant_debian function"
   step_pause
-  #curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-  #sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-  #sudo apt-get update && sudo apt-get install vagrant
+  curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+  sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+  sudo apt-get update && sudo apt-get install vagrant
   verbose "we finished install_vagrant_debian function"
   step_pause
 }
