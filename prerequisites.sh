@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+install_vagrant_rhel()
+{
+  echo "we are in install_vagrant_rhel function"
+  #sudo yum install -y yum-utils
+  #sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+  #sudo yum install -y vagrant
+}
+
 if [[ -f /etc/os-release ]]
 then
   . /etc/os-release
@@ -8,10 +16,9 @@ else
   exit 1
 fi
 
-if [[ "$ID" == "rhel" ]]
-then
-  echo "os family is rhel"
-else
-  echo "os family $ID is not yet supported"
-  exit 1
-fi
+case $ID in
+     "rhel")
+        echo "we are in case rhel"
+        install_vagrant_rhel
+        ;;
+     *) echo "$ID is not yet supported";;
