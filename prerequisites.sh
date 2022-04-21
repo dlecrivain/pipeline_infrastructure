@@ -7,18 +7,15 @@ while [ $# -ge 1 ]; do
 case "$1" in
       -v)
         script_verbose="yes"
-        echo "cas -v"
         shift
         ;;
       -t)
         script_step_pause="yes"
-        echo "cas -t"
         shift
         ;;
       -vt|-tv)
         script_verbose="yes"
         script_step_pause="yes"
-        echo "cas -vt ou -tv"
         shift
         ;;
       *)
@@ -29,7 +26,7 @@ case "$1" in
 esac
 done
 
-echo "la valeur de script_verbose est à ${script_verbose}, et script_step_pause à ${script_step_pause}"
+#echo "la valeur de script_verbose est à ${script_verbose}, et script_step_pause à ${script_step_pause}"
 
 verbose()
 {
