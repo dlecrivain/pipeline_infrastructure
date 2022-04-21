@@ -45,12 +45,17 @@ fi
 install_vagrant_rhel()
 {
   verbose "we are in install_vagrant_rhel function"
-  step_pause
-  #sudo yum install -y yum-utils
-  #sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-  #sudo yum install -y vagrant
-  verbose "we finished install_vagrant_rhel function"
-  step_pause
+  if which vagrant >/dev/null
+  then
+    echo "vagrant already installed"
+    step_pause
+  else  
+    sudo yum install -y yum-utils
+    sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    sudo yum install -y vagrant
+    verbose "we finished install_vagrant_rhel function"
+    step_pause
+  fi 
 }
 
 install_vagrant_debian()
