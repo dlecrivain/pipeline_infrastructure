@@ -22,3 +22,4 @@ case $ID in
         install_vagrant_rhel
         ;;
      *) echo "$ID is not yet supported";;
+esac 
