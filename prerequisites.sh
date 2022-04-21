@@ -2,6 +2,7 @@
 
 script_verbose="no"
 script_step_pause="no"
+prerequisites_wsl="no"
 
 while [ $# -ge 1 ]; do
 case "$1" in
