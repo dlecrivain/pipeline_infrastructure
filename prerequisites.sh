@@ -104,7 +104,7 @@ install_ansible_ubuntu()
   verbose "we finished install_ansible_ubuntu function"
 }
 
-if [[ -f /etc/os-release ]]
+if [ -f /etc/os-release ]
 then
   . /etc/os-release
 else
