@@ -80,7 +80,7 @@ install_vagrant_ubuntu()
          if [ $wsl_bashrc_param2 -eq "0" ]; then
            echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
          fi
-          source ~/.bashrc
+          . ~/.bashrc
           vagrant plugin install virtualbox_WSL2
     fi
   verbose "we finished install_vagrant_ubuntu function"
