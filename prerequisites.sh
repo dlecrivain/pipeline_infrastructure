@@ -73,7 +73,7 @@ install_vagrant_debian()
     if [ $prerequisites_wsl = "yes" ]; then
           echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
           echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
-          source ~/.bahrc
+          source ~/.bashrc
           vagrant plugin install virtualbox_WSL2
     fi
   verbose "we finished install_vagrant_debian function"
