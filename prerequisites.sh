@@ -96,9 +96,9 @@ install_ansible_ubuntu()
     step_pause
   else  
     sudo apt update
-    sudo apt install software-properties-common
+    sudo apt install -y software-properties-common
     sudo add-apt-repository --yes --update ppa:ansible/ansible
-    sudo apt install ansible
+    sudo apt install -y ansible
     step_pause
   fi 
   verbose "we finished install_ansible_ubuntu function"
