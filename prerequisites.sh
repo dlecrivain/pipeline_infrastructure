@@ -87,6 +87,23 @@ install_vagrant_ubuntu()
   step_pause
 }
 
+install_ansible_ubuntu()
+{
+  verbose "we are in install_ansible_ubuntu function"
+  if which ansible >/dev/null
+  then
+    echo "ansible already installed"
+    step_pause
+  else  
+    sudo apt update
+    sudo apt install software-properties-common
+    sudo add-apt-repository --yes --update ppa:ansible/ansible
+    sudo apt install ansible
+    step_pause
+  fi 
+  verbose "we finished install_ansible_ubuntu function"
+}
+
 if [[ -f /etc/os-release ]]
 then
   . /etc/os-release
@@ -103,10 +120,11 @@ case $ID in
         verbose "we finished case rhel"
         step_pause
         ;;
-     "debian"|"ubuntu")
+     "ubuntu")
         verbose "we are in case ubuntu"
         step_pause
         install_vagrant_ubuntu
+        install_ansible_ubuntu
         verbose "we finished case ubuntu"
         step_pause
         ;;
