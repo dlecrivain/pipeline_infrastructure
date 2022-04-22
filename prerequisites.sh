@@ -63,9 +63,9 @@ install_vagrant_rhel()
   fi 
 }
 
-install_vagrant_debian()
+install_vagrant_ubuntu()
 {
-  verbose "we are in install_vagrant_debian function"
+  verbose "we are in install_vagrant_ubuntu function"
   step_pause
   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -83,7 +83,7 @@ install_vagrant_debian()
           source ~/.bashrc
           vagrant plugin install virtualbox_WSL2
     fi
-  verbose "we finished install_vagrant_debian function"
+  verbose "we finished install_vagrant_ubuntu function"
   step_pause
 }
 
@@ -104,10 +104,10 @@ case $ID in
         step_pause
         ;;
      "debian"|"ubuntu")
-        verbose "we are in case debian"
+        verbose "we are in case ubuntu"
         step_pause
-        install_vagrant_debian
-        verbose "we finished case debian"
+        install_vagrant_ubuntu
+        verbose "we finished case ubuntu"
         step_pause
         ;;
      *) echo "$ID is not yet supported";;
