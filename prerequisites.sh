@@ -71,8 +71,17 @@ install_vagrant_debian()
   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
   sudo apt-get update && sudo apt-get install vagrant
     if [ $prerequisites_wsl = "yes" ]; then
-          echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
-          echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
+      wsl_bashrc_param1=$(grep -c "VAGRANT_WSL_ENABLE_WINDOWS_ACCESS" ~/.bashrc)
+      wsl_bashrc_param2=$(grep -c "PATH:/mnt/c/Program Files/Oracle/VirtualBox" ~/.bashrc)
+         if [ $wsl_bashrc_param1 -eq "0" ]; then
+           echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
+         fi
+         
+         if [ $wsl_bashrc_param2 -eq "0" ]; then
+           echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
+         fi
+          #echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
+          #echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
           source ~/.bashrc
           vagrant plugin install virtualbox_WSL2
     fi
