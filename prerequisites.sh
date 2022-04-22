@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 script_verbose="no"
 script_step_pause="no"
