@@ -35,14 +35,14 @@ echo "la valeur de script_verbose est à ${script_verbose}, script_step_pause à
 
 verbose()
 {
-if [ $script_verbose == "yes" ]; then
+if [ $script_verbose = "yes" ]; then
         echo $1
 fi
 }
 
 step_pause()
 {
-if [ $script_step_pause == "yes" ]; then
+if [ $script_step_pause = "yes" ]; then
         echo "press a key to continue"
         read a
 fi
@@ -70,7 +70,7 @@ install_vagrant_debian()
   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
   sudo apt-get update && sudo apt-get install vagrant
-    if [ $prerequisites_wsl == "yes" ]; then
+    if [ $prerequisites_wsl = "yes" ]; then
           echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
           echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
           source ~/.bahrc
